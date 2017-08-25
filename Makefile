@@ -18,10 +18,10 @@
 CC = gcc
 
 # Flags for Compiler
-CFLAGS = -ggdb3 -O0 -O3 -std=c11 -Wall -Werror -Wextra -Wno-sign-compare -Wshadow -U__STRICT_ANSI__
+CFLAGS = -ggdb3 -O0 -O3 -std=c11 -Wall -Werror -Wextra -Wno-sign-compare -Wshadow -U__STRICT_ANSI__ -pedantic
 
 # Flags for Linker
-LFLAGS = -lm
+LFLAGS = -lm -pthread
 
 # Flags for Directories
 DIR = -I$(INC)
@@ -48,10 +48,6 @@ ifeq ($(OS),Windows_NT)
 	VPATH += $(LIB)
 	SOURCE += $(wildcard $(LIB)/*.c)
 	LFLAGS += -lws2_32 -lwsock32
-
-# Linux Support
-else
-	LFLAGS += -pthread	# POSIX Multi-thread
 endif
 
 # Object File(s)
